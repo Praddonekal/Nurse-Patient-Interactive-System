@@ -5,3 +5,9 @@ Nurse Dashboard:
 
 Patient Dashboard:
 ![Screenshot 2022-04-28 132916](https://user-images.githubusercontent.com/36895792/165812572-cad4a79f-40d1-4e93-acfb-75c840c7ef44.png)
+
+
+Instructions:
+1) Create docker images for client and server
+2) run docker-compose.yaml (docker-compose -f docker-compose.yaml up)
+3) open localhost:3000 in your browser
