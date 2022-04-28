@@ -1,0 +1,41 @@
+version: "3" 
+services:
+  mongodb:
+    image: mongo
+    ports: 
+    - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - react-app
+  mongo-express:
+    image: mongo-express
+    ports:
+    - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - react-app
+    restart: unless-stopped
+  react-client:
+    image: client-image
+    ports:
+      - 3000:3000
+    depends_on:
+      - react-server
+    networks:
+      - react-app
+  react-server:
+    image: server-image
+    ports:
+      - 4000:4000
+    networks:
+      - react-app
+networks:
+  react-app:
+    driver: bridge
